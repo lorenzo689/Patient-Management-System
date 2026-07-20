@@ -21,7 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", plusJakartaSans.variable)}>
+    <html
+      lang="en"
+      className={cn("font-sans", plusJakartaSans.variable)}
+      suppressHydrationWarning
+    >
       <body className="min-h-screen bg-dark-300 font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
