@@ -270,11 +270,6 @@
     @apply top-2 focus:ring-0 focus:ring-offset-0 focus-visible:border-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0;
   }
 
-  /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
-  .input-phone {
-    @apply mt-2 h-11 rounded-md border border-dark-500 bg-dark-400 px-3 text-sm placeholder:text-dark-600;
-  }
-
   /* =====  REACT DATE PICKER OVERRIDES */
   .date-picker {
     @apply h-11 w-full overflow-hidden rounded-md border-transparent px-3 text-[14px] leading-4.5 font-medium placeholder:text-dark-600 outline-none;
@@ -340,15 +335,94 @@
   align-items: center !important;
 }
 
-/* =====  REACT PHONE NUMBER INPUT OVERRIDES */
-.PhoneInputInput {
-  outline: none;
-  margin-left: 4px;
-  background: #1a1d21;
-  font-size: 14px;
-  font-weight: 500;
+/* =====  REACT PHONE NUMBER INPUT ===== */
+.input-phone {
+  --PhoneInput-color--focus: #24ae7c;
+  --PhoneInputCountryFlag-borderColor--focus: transparent;
+  --PhoneInputCountrySelectArrow-color--focus: #abb8c4;
+
+  display: flex; 
+  align-items: center;
+  width: 100%; 
+  height: 44px; 
+  padding: 0 12px; 
+  border: 1px solid #363a3d;
+  border-radius: 6px; 
+  background-color: #1a1d21;
+  transition: border-color 150ms ease;
 }
 
-.PhoneInputInput::placeholder {
-  color: #76828d;
+.input-phone:focus-within {
+  border-color: #76828d;
+}
+
+.input-phone .PhoneInputCountry {
+  display: flex; 
+  align-items: center; 
+  margin-right: 8px;
+}
+
+.input-phone .PhoneInputCountryIcon {
+  width: 24px; 
+  height: 16px; 
+  overflow: hidden;
+  border-radius: 2px; 
+  box-shadow: none;
+}
+
+.input-phone .PhoneInputCountryIconImg {
+  display: block; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.input-phone .PhoneInputCountrySelect {
+  cursor: pointer;
+  outline: none; 
+  color-scheme: dark;
+}
+
+.input-phone .PhoneInputCountrySelect:focus {
+  outline: none;
+}
+
+.input-phone .PhoneInputCountrySelect option {
+  background-color: #1a1d21;
+  color: #ffffff;
+}
+
+.input-phone 
+  .PhoneInputCountrySelect:focus 
+  + .PhoneInputCountryIcon--border {
+    box-shadow: none;
+}
+
+.input-phone .PhoneInputCountrySelectArrow {
+  width: 7px; 
+  height: 7px; 
+  margin-left: 6px; 
+  color: #abb8c4;
+}
+
+.input-phone .PhoneInputInput {
+  flex: 1; 
+  min-width: 0; 
+  height: 100%; 
+  margin-left: 4px; 
+  border: 0; 
+  outline: 0; 
+  background: transparent; 
+  color: white; 
+  font-size: 14px; 
+  font-weight: 500; 
+}
+
+.input-phone .PhoneInputInput:focus {
+  outline: none; 
+  box-shadow: none;
+}
+
+.input-phone .PhoneInputInput::placeholder {
+  color: #76828d; 
 }
