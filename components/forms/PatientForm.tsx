@@ -8,15 +8,14 @@ import CustomFormField from "../ui/CustomFormField";
 import { Controller, useForm } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import PhoneInput from "react-phone-number-input";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/patient.actions";
 
 export function PatientForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
   const router = useRouter();
-  const [isLoading, setisLoading] = useState(false);
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(UserFormValidation),
@@ -32,13 +31,13 @@ export function PatientForm({
   });
 
   const onSubmit = async ({ name, email, phone }: UserFormValues) => {
-    setisLoading(true);
-
     try {
-      /* const userData = {
-        name,
-        email,
-        phone, */
+      const userData = { name, email, phone };
+      const user = await createUser(userData);
+
+      if (user) {
+        router.push(`/patients/${user.$id}/register`);
+      }
     } catch (error) {
       console.log(error);
     }
